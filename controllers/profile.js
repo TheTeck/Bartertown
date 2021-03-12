@@ -7,34 +7,34 @@ module.exports = {
     update
 }
 
-function show (req, res) {
-
-    console.log(req.user._id)
-    User.findById(req.user._id, function(err, user) {
+async function show (req, res) {
+    try {
+        const user = await User.findById(req.user._id)
         const name = user.username ? user.username : user.email
-        console.log(user, '<<<<')
-        res.render('profile/index', {
-            user: req.user,
-            name: name
-        })
-    })      
+        res.render('profile/index', { user: req.user, name: name })
+    } catch (err) {
+        res.send(err)
+    }     
 }
 
-function edit (req, res) {
-    User.findById(req.user._id, function(err, user) {
-        res.render('profile/edit', {
-            name: user.username
-        })
-    })
+async function edit (req, res) {
+    try {
+        const user = await User.findById(req.user._id)
+        res.render('profile/edit', { name: user.username })
+    } catch (err) {
+        res.send(err)
+    }
 }
 
-function update (req, res) {
-    User.findById(req.user._id, function(err, user) {
+async function update (req, res) {
+    try {
+        const user = await User.findById(req.user._id)
         user.username = req.body.username
         user.email = req.body.email
-        user.save(function(err) {
+        await user.save(function(err) { 
             res.redirect('/profile')
-        })
-        
-    })
+        })    
+    } catch (err) {
+        res.send(err)
+    }
 }
