@@ -7,8 +7,8 @@ module.exports = {
 
 function index (req, res, next) {
 
-      res.render('index', {
-      user: req.user,
-      name: 'Stranger'
-    })
+  res.render('index', {
+    user: req.user,
+    name: 'Stranger'
+  })
 }
