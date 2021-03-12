@@ -2,4 +2,13 @@
 <a href="/profile/edit">Edit your information</a>
 <a href="/proposals/new">Create a New Proposal</a>
 
+<h3>All of your current proposals:</h3>
+<ul class="display-all">
+    <% proposals.forEach(proposal => { %>
+        <div class="prop-card">
+            <p><%= proposal.title %></p>
+        </div>
+    <% }) %>
+</ul>
+
 <%- include('../../partials/footer') %>

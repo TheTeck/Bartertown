@@ -1,14 +1,16 @@
-
 const User = require('../models/user');
+const Proposal = require('../models/proposal')
 
 module.exports = {
     index
 }
 
-function index (req, res, next) {
+async function index (req, res, next) {
+
+  const proposals = await Proposal.find({})
 
   res.render('index', {
-    user: req.user,
-    name: 'Stranger'
+    name: 'Stranger',
+    proposals
   })
 }

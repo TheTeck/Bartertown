@@ -18,3 +18,30 @@
 .collection-item form {
   margin-top: -5px;
 }
+
+.prop-card {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(rgb(194, 183, 174), grey);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0;
+}
+
+.display-all {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.prop-card p {
+  background: linear-gradient(rgba(0, 0, 0, 0.15), black);
+  font-size: 20px;
+  text-align: center;
+  color: rgb(202, 199, 199);
+  padding: 5px;
+  width: 100%;
+  margin: 0;
+}

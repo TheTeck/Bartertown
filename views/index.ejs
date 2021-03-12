@@ -1,4 +1,11 @@
 <%- include('../partials/header') %>
-<h1>hello</h1>
+<h3>Get any of these goods by trading your own!</h3>
+<ul class="display-all">
+    <% proposals.forEach(proposal => { %>
+        <div class="prop-card">
+            <p><%= proposal.title %></p>
+        </div>
+    <% }) %>
+</ul>
 
 <%- include('../partials/footer') %>
