@@ -3,12 +3,12 @@
 <a href="/proposals/new">Create a New Proposal</a>
 
 <h3>All of your current proposals:</h3>
-<ul class="display-all">
+<div class="display-all">
     <% proposals.forEach(proposal => { %>
-        <div class="prop-card">
+        <a class="card-anchor" href="/proposals/<%= proposal._id %>"><div class="prop-card">
             <p><%= proposal.title %></p>
-        </div>
+        </div></a>
     <% }) %>
-</ul>
+</div>
 
 <%- include('../../partials/footer') %>

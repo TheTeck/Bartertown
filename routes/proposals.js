@@ -5,7 +5,9 @@ const proposalsCtlr = require('../controllers/proposals')
 
 
 router.get('/new', proposalsCtlr.new)
+router.get('/:id', proposalsCtlr.show)
 router.post('/', proposalsCtlr.create)
+
 
 
 module.exports = router
