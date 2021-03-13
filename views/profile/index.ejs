@@ -1,11 +1,12 @@
 <%- include('../../partials/header') %>
 <a href="/profile/edit">Edit your information</a>
-<a href="/proposals/new">Create a New Proposal</a>
+<a href="/proposals/new">Create a New Trade Proposal</a>
 
 <h3>All of your current proposals:</h3>
 <div class="display-all">
     <% proposals.forEach(proposal => { %>
         <a class="card-anchor" href="/proposals/<%= proposal._id %>"><div class="prop-card">
+            <img src="/uploads/<%= proposal.image %>" alt="items">
             <p><%= proposal.title %></p>
         </div></a>
     <% }) %>

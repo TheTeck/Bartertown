@@ -3,6 +3,7 @@
 <ul class="display-all">
     <% proposals.forEach(proposal => { %>
         <div class="prop-card">
+            <img src="/uploads/<%= proposal.image %>" alt="items">
             <p><%= proposal.title %></p>
         </div>
     <% }) %>

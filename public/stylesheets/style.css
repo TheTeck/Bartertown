@@ -20,6 +20,7 @@
 }
 
 .prop-card {
+  margin-top: 30px;
   width: 200px;
   height: 200px;
   background: linear-gradient(rgb(194, 183, 174), grey);
@@ -27,6 +28,7 @@
   flex-direction: column;
   justify-content: flex-end;
   padding: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.56);
 }
 
 .display-all {
@@ -37,7 +39,7 @@
 }
 
 .prop-card p {
-  background: linear-gradient(rgba(0, 0, 0, 0.15), black);
+  background: linear-gradient(rgba(0, 0, 0, 0.65), black);
   font-size: 20px;
   text-align: center;
   color: rgb(202, 199, 199);

@@ -1,1 +1,12 @@
-<h1><%= proposal.title %></h1>
+<%- include('../../partials/header') %>
+
+<img src="/uploads/<%= proposal.image %>" alt="An image of <%= proposal.title %>">
+
+<h3><%= proposal.title %></h3>
+<p><%= proposal.description %></p>
+
+<form action="/proposals/<%= proposal._id %>?_method=DELETE" method="POST">
+    <button type="submit">Delete Trade Proposal</button>
+</form>
+
+<%- include('../../partials/footer') %>
