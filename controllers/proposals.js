@@ -75,8 +75,6 @@ async function deleteProposal (req, res) {
     try {
         // Get the proposal from the model and delete it
         await Proposal.findByIdAndDelete(req.params.id)
-        // Just getting the username for the nav
-        const user = await User.findById(req.user._id)
         res.redirect('/profile')
     } catch (err) {
         res.send(err)

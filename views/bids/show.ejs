@@ -1,0 +1,13 @@
+<%- include('../../partials/header') %>
+
+<img class="show-view-image" src="/uploads/<%= bid.image %>" alt="An image of <%= bid.title %>">
+
+<p><%= bid.description %></p>
+
+<% if (isOwner) { %> 
+    <form action="/bids/<%= bid._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete Trade Bid</button>
+    </form>
+<% } %>
+
+<%- include('../../partials/footer') %>

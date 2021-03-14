@@ -4,7 +4,9 @@ const Bid = require('../models/bid')
 
 module.exports = {
     new: newBid,
-    create
+    create,
+    show,
+    delete: deleteBid
 }
 
 async function newBid (req, res) {
@@ -32,6 +34,29 @@ async function create (req, res) {
         bid.image = req.body.file.filename
         await bid.save()
         res.redirect('/proposals')
+    } catch (err) {
+        res.send(err)
+    }
+}
+
+async function show (req, res) {
+    try {
+        // Get the bid to show in view
+        const bid = await Bid.findById(req.params.id)
+        // Get the user to pass the username
+        const user = await User.findById(req.user._id)
+        // Determine if user is owner of the bid
+        res.render('bids/show', { name: user.username, bid , isOwner: user._id.equals(bid.owner) })
+    } catch (err) {
+        res.send(err)  
+    }
+}
+
+async function deleteBid (req, res) {
+    try {
+        // Get the bid from the model and delete it
+        await Bid.findByIdAndDelete(req.params.id)
+        res.redirect('/profile')
     } catch (err) {
         res.send(err)
     }

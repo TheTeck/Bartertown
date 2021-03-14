@@ -1,6 +1,6 @@
 <%- include('../../partials/header') %>
 
-<img src="/uploads/<%= proposal.image %>" alt="An image of <%= proposal.title %>">
+<img class="show-view-image" src="/uploads/<%= proposal.image %>" alt="An image of <%= proposal.title %>">
 
 <h3><%= proposal.title %></h3>
 <p><%= proposal.description %></p>
@@ -16,7 +16,7 @@
 <% if (bids) { %>
     <div class="display-all">
         <% bids.forEach(bid => { %>
-            <a class="card-anchor" href="#"><div class="prop-card">
+            <a class="card-anchor" href="/bids/<%= bid._id %>"><div class="prop-card">
                 <img src="/uploads/<%= bid.image %>" alt="<%= bid.title %>">
                 <h6 class="tiny-name"><%= bid.ownerName %></h6>
                 <p><%= bid.title %></p>
