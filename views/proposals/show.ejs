@@ -13,4 +13,16 @@
     <a href="/proposals/<%= proposal._id %>/bids/new">Make A Bid</a>
 <% } %>
 
+<% if (bids) { %>
+    <div class="display-all">
+        <% bids.forEach(bid => { %>
+            <a class="card-anchor" href="#"><div class="prop-card">
+                <img src="/uploads/<%= bid.image %>" alt="<%= bid.title %>">
+                <h6 class="tiny-name"><%= bid.ownerName %></h6>
+                <p><%= bid.title %></p>
+            </div></a>
+        <% }) %>
+    </div>
+<% } %>
+
 <%- include('../../partials/footer') %>

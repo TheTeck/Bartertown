@@ -32,6 +32,10 @@
   position: relative;
 }
 
+.prop-card img {
+  height: 100%;
+}
+
 .display-all {
   width: 100%;
   display: flex;

@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const Proposal = require('../models/proposal');
-const user = require('../models/user');
+const Bid = require('../models/bid');
+
 
 
 module.exports = {
@@ -15,7 +16,6 @@ async function index (req, res) {
     try {
         // Getting all of the proposal to view
         const proposals = await Proposal.find({})
-        console.log(proposals)
         // Just getting the username for the nav
         const user = await User.findById(req.user._id)
         res.render('proposals/index', { name: user.username, proposals })
@@ -36,7 +36,6 @@ async function newProposal (req, res) {
 
 async function create (req, res) {
     try {
-        console.log(req.body.file.filename)
         // Populate the new proposal with data from form
         const proposal = new Proposal(req.body)
         // Tie the proposal to it's owner
@@ -59,12 +58,13 @@ async function show (req, res) {
         const proposal = await Proposal.findById(req.params.id)
         // Just getting the username for the nav
         const user = await User.findById(req.user._id)
-
+        // Get the bids attached to this proposal
+        const bids = await Bid.find({ parentProposal: req.params.id })
         // Reroute depending on if it is the user's proposal or not
         if (proposal.owner.equals(req.user._id)) {
-            res.render('proposals/show', { name: user.username, proposal, isOwner: true})
+            res.render('proposals/show', { name: user.username, proposal, bids, isOwner: true})
         } else {
-            res.render('proposals/show', { name: user.username, proposal, isOwner: false})
+            res.render('proposals/show', { name: user.username, proposal, bids, isOwner: false})
         }        
     } catch (err) {
         res.send(err)
