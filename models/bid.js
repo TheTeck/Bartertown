@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+const commentSchema = new Schema ({
+    owner: String,
+    content: String
+})
+
 const bidSchema = new Schema({
     title: {
         type: String,
@@ -26,7 +31,8 @@ const bidSchema = new Schema({
     likes: {
         type: Number,
         default: 0
-    }
+    },
+    comments: [commentSchema]
 })
 
 module.exports = mongoose.model('Bid', bidSchema)

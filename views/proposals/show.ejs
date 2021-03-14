@@ -25,4 +25,17 @@
     </div>
 <% } %>
 
+<% if (proposal.comments.length > 0) { %>
+    <% proposal.comments.forEach(comment => { %>
+        <p><span><%= comment.owner %> </span> <%= comment.content %></p>
+    <% }) %>
+<% } else { %>
+    <p>There are no comments yet</p>
+<% } %>
+
+<form action="/proposals/<%= proposal._id %>/comments" method="POST">
+    <textarea name="content" cols="40" rows="4"></textarea>
+    <button type="submit">Add Comment</button>
+</form>
+
 <%- include('../../partials/footer') %>

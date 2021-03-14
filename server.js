@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-const multer = require('multer')
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 // session middleware
@@ -23,6 +22,7 @@ const indexRoutes = require('./routes/index')
 const profileRoutes = require('./routes/profile')
 const proposalsRoutes = require('./routes/proposals')
 const bidsRoutes = require('./routes/bids')
+const commentsRoutes = require('./routes/comments')
 
 
 
@@ -62,6 +62,7 @@ app.use('/', indexRoutes)
 app.use('/profile', profileRoutes)
 app.use('/', proposalsRoutes)
 app.use('/', bidsRoutes)
+app.use('/', commentsRoutes)
 
 
 // invalid request, send 404 page

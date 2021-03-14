@@ -16,7 +16,11 @@
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
-        <a href="" class="brand-logo left">Bartertown</a>
+        <% if (user) { %>
+          <a href="/profile" class="brand-logo left">Bartertown</a>
+        <% } else { %>
+          <a href="/" class="brand-logo left">Bartertown</a>
+        <% } %>
         <ul class="right">
           <li>Hi, <%= name %></li>
           <li>

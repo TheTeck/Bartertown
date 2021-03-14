@@ -60,12 +60,8 @@ async function show (req, res) {
         const user = await User.findById(req.user._id)
         // Get the bids attached to this proposal
         const bids = await Bid.find({ parentProposal: req.params.id })
-        // Reroute depending on if it is the user's proposal or not
-        if (proposal.owner.equals(req.user._id)) {
-            res.render('proposals/show', { name: user.username, proposal, bids, isOwner: true})
-        } else {
-            res.render('proposals/show', { name: user.username, proposal, bids, isOwner: false})
-        }        
+        
+        res.render('proposals/show', { name: user.username, proposal, bids, isOwner: proposal.owner.equals(req.user._id) })    
     } catch (err) {
         res.send(err)
     }

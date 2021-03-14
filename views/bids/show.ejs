@@ -10,4 +10,17 @@
     </form>
 <% } %>
 
+<% if (bid.comments.length > 0) { %>
+    <% bid.comments.forEach(comment => { %>
+        <p><span><%= comment.owner %> </span> <%= comment.content %></p>
+    <% }) %>
+<% } else { %>
+    <p>There are no comments yet</p>
+<% } %>
+
+<form action="/bids/<%= bid._id %>/comments" method="POST">
+    <textarea name="content" cols="40" rows="4"></textarea>
+    <button type="submit">Add Comment</button>
+</form>
+
 <%- include('../../partials/footer') %>
