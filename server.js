@@ -22,6 +22,7 @@ require('./config/passport');
 const indexRoutes = require('./routes/index')
 const profileRoutes = require('./routes/profile')
 const proposalsRoutes = require('./routes/proposals')
+const bidsRoutes = require('./routes/bids')
 
 
 
@@ -59,7 +60,8 @@ app.use(function (req, res, next) {
 // mount all routes with appropriate base paths
 app.use('/', indexRoutes)
 app.use('/profile', profileRoutes)
-app.use('/proposals', proposalsRoutes)
+app.use('/', proposalsRoutes)
+app.use('/', bidsRoutes)
 
 
 // invalid request, send 404 page

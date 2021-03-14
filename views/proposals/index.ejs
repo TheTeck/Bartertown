@@ -1,0 +1,16 @@
+<%- include('../../partials/header') %>
+
+<div class="display-all">
+    <% proposals.forEach(proposal => { %>
+        <a class="card-anchor" href="/proposals/<%= proposal._id %>">
+            <div class="prop-card">
+                <img src="/uploads/<%= proposal.image %>" alt="items">
+                <h6 class="tiny-name"><%= proposal.ownerName %></h6>
+                <p><%= proposal.title %></p>
+            </div>
+        </a>
+    <% }) %>
+</div>
+
+
+<%- include('../../partials/footer') %>

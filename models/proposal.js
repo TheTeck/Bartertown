@@ -14,6 +14,7 @@ const proposalSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    ownerName: String,
     image: {
         type: String,
         default: 'images/colors.png'

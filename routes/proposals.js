@@ -23,10 +23,11 @@ const upload = multer ({
     }
 }).single('image')
 
-router.get('/new', proposalsCtlr.new)
-router.get('/:id', proposalsCtlr.show)
-router.post('/', uploader, proposalsCtlr.create)
-router.delete('/:id', proposalsCtlr.delete)
+router.get('/proposals', proposalsCtlr.index)
+router.get('/proposals/new', proposalsCtlr.new)
+router.get('/proposals/:id', proposalsCtlr.show)
+router.post('/proposals/', uploader, proposalsCtlr.create)
+router.delete('/proposals/:id', proposalsCtlr.delete)
 
 // The middleware for multer
 async function uploader (req, res, next) {

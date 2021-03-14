@@ -29,6 +29,7 @@
   justify-content: flex-end;
   padding: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.56);
+  position: relative;
 }
 
 .display-all {
@@ -46,8 +47,24 @@
   padding: 5px;
   width: 100%;
   margin: 0;
+  z-index: 2;
 }
 
 .car-anchor {
   text-decoration: none;
+}
+
+.prop-card img {
+  position: absolute;
+  width: 200px;
+}
+
+.tiny-name {
+  color: rgba(0, 0, 0, 0.587);
+  text-align: left;
+  font-size: 20px;
+  padding: 3px;
+  z-index: 2;
+  background: none;
+  margin: 0;
 }
