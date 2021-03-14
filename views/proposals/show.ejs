@@ -2,6 +2,26 @@
 
 <img class="show-view-image" src="/uploads/<%= proposal.image %>" alt="An image of <%= proposal.title %>">
 
+<div class="icon-couplet">
+    <i class="material-icons">favorite_border</i>
+    <p><%= proposal.likes %></p>
+</div>
+
+<div class="icon-couplet">
+    <i class="material-icons">visibility</i>
+    <p><%= proposal.views %></p>
+</div>
+
+<div class="icon-couplet">
+    <i class="material-icons">message</i>
+    <p><%= proposal.comments.length %></p>
+</div>
+
+<div class="icon-couplet">
+    <i class="material-icons">sell</i>
+    <p><%= bids.length %></p>
+</div>
+
 <h3><%= proposal.title %></h3>
 <p><%= proposal.description %></p>
 

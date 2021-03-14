@@ -2,6 +2,21 @@
 
 <img class="show-view-image" src="/uploads/<%= bid.image %>" alt="An image of <%= bid.title %>">
 
+<div class="icon-couplet">
+    <i class="material-icons">favorite_border</i>
+    <p><%= bid.likes %></p>
+</div>
+
+<div class="icon-couplet">
+    <i class="material-icons">visibility</i>
+    <p><%= bid.views %></p>
+</div>
+
+<div class="icon-couplet">
+    <i class="material-icons">message</i>
+    <p><%= bid.comments.length %></p>
+</div>
+
 <p><%= bid.description %></p>
 
 <% if (isOwner) { %> 

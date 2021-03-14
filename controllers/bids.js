@@ -33,7 +33,7 @@ async function create (req, res) {
         // Get the image name from file saved in req.body (appended in router)
         bid.image = req.body.file.filename
         await bid.save()
-        res.redirect('/proposals')
+        res.redirect(`/proposals/${req.params.id}`)
     } catch (err) {
         res.send(err)
     }
