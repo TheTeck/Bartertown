@@ -1,10 +1,18 @@
 const Proposal = require('../models/proposal')
+const Bid = require('../models/bid')
+const { signedCookie } = require('cookie-parser')
 
 module.exports = {
     index
 }
 
 async function index (req, res, next) {
-  const proposals = await Proposal.find({})
-  res.render('index', { name: 'Stranger', proposals })
+  try {
+    const proposals = await Proposal.find({})
+    const bids = await Bid.find({})
+    console.log(bids)
+    res.render('index', { name: 'Stranger', proposals })
+  } catch (err) {
+    res.send(err)
+  }
 }

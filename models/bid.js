@@ -25,8 +25,8 @@ const bidSchema = new Schema({
     },
     ownerName: String,
     image: {
-        type: String,
-        default: 'images/colors.png'
+        data: Buffer,
+        contentType: String
     },
     likes: {
         type: Number,

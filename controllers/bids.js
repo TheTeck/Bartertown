@@ -1,6 +1,8 @@
 const Proposal = require('../models/proposal')
 const User = require('../models/user')
 const Bid = require('../models/bid')
+const fs = require('fs')
+const path = require('path')
 
 module.exports = {
     new: newBid,
@@ -28,7 +30,10 @@ async function create (req, res) {
         bid.ownerName = req.user.username
         bid.parentProposal = req.params.id
         // Get the image name from file saved in req.body (appended in router)
-        bid.image = req.body.file.filename
+        bid.image = {
+            data: fs.readFileSync(path.join('public/uploads/' + req.body.file.filename)),
+            contentType: req.body.mimetype
+        }
         await bid.save()
         res.redirect(`/proposals/${req.params.id}`)
     } catch (err) {
@@ -40,7 +45,8 @@ async function show (req, res) {
     try {
         // Get the bid to show in view
         const bid = await Bid.findById(req.params.id)
-        res.render('bids/show', { name: req.user.username, bid , isOwner: user._id.equals(bid.owner) })
+        console.log('showing bid')
+        res.render('bids/show', { name: req.user.username, bid , isOwner: req.user._id.equals(bid.owner) })
     } catch (err) {
         res.send(err)  
     }

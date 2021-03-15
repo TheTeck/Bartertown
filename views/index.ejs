@@ -4,8 +4,9 @@
     <ul>
         <% proposals.forEach(proposal => { %>
             <div class="row">
-            <div class="prop-card hoverable z-depth-1 col s3">
-                <img src="/uploads/<%= proposal.image %>" alt="items">
+            <div class="prop-card hoverable z-depth-1 col s3 no-pad">
+                <img src="data:image/<%= proposal.image.contentType%>;base64,
+                            <%=proposal.image.data.toString('base64')%>" alt="image of <%= proposal.title %>">
                 <p><%= proposal.title %></p>
             </div>
             </div>

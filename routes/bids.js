@@ -17,7 +17,20 @@ const upload = multer ({
     storage,
     limits: { fileSize: 1000000 },
     fileFilter: function(req, file, cb) {
-        checkFileType(file, cb)
+        // Allow extensions
+        const filetypes = /jpeg|jpg|png|gif/
+        // Check extension
+        const extname = filetypes.test(path.extname(file.originalname).toLowerCase())
+        // Check mime type
+        const mimetype = filetypes.test(file.mimetype)
+        // Need mimetype for data model
+        req.body.mimetype = file.mimetype
+
+        if (mimetype && extname) {
+            return cb(null, true)
+        } else {
+            cb ('Error: Images Only!')
+        }
     }
 }).single('image')
 
@@ -38,22 +51,6 @@ async function uploader (req, res, next) {
             return next()
         }
     })
-}
-
-// Helper function for file validation
-function checkFileType (file, cb) {
-    // Allow extensions
-    const filetypes = /jpeg|jpg|png|gif/
-    // Check extension
-    const extname = filetypes.test(path.extname(file.originalname).toLowerCase())
-    // Check mime type
-    const mimetype = filetypes.test(file.mimetype)
-
-    if (mimetype && extname) {
-        return cb(null, true)
-    } else {
-        cb ('Error: Images Only!')
-    }
 }
 
 module.exports = router

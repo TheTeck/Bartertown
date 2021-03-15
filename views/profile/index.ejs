@@ -9,7 +9,8 @@
             <% proposals.forEach(proposal => { %>
                 <a class="card-anchor hoverable z-depth-1 col s3 carousel-item no-pad" href="/proposals/<%= proposal._id %>">
                     <div class="prop-card">
-                        <img src="/uploads/<%= proposal.image %>" alt="image of <%= proposal.title %>">
+                        <img src="data:image/<%= proposal.image.contentType%>;base64,
+                            <%=proposal.image.data.toString('base64')%>" alt="image of <%= proposal.title %>">
                         <p><%= proposal.title %></p>
                     </div>
                 </a>
@@ -24,9 +25,10 @@
             <% bids.forEach(bid => { %>
                 <a class="card-anchor hoverable z-depth-1 col s3 carousel-item no-pad" href="/bids/<%= bid._id %>">
                     <div class="prop-card">
-                        <img src="/uploads/<%= bid.image %>" alt="image of <%= bid.title %>">
+                        <img src="data:image/<%= bid.image.contentType%>;base64,
+                            <%=bid.image.data.toString('base64')%>" alt="image of <%= bid.title %>">
                         <p><%= bid.title %></p>
-                    </div>
+                    </div> 
                 </a>
             <% }) %>
         </div>

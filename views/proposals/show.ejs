@@ -1,6 +1,8 @@
 <%- include('../../partials/header') %>
 
-<img class="show-view-image" src="/uploads/<%= proposal.image %>" alt="An image of <%= proposal.title %>">
+<img class="show-view-image" src="data:image/<%= proposal.image.contentType%>;base64,
+                     <%=proposal.image.data.toString('base64')%>">
+
 
 <div class="icon-couplet">
     <i class="material-icons">visibility</i>

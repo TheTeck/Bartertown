@@ -1,6 +1,8 @@
 const User = require('../models/user');
 const Proposal = require('../models/proposal');
 const Bid = require('../models/bid');
+const fs = require('fs')
+const path = require('path')
 
 
 
@@ -36,7 +38,10 @@ async function create (req, res) {
         const user = await User.findById(req.user._id)
         proposal.ownerName = user.username
         // Get the image name from file saved in req.body (appended in router)
-        proposal.image = req.body.file.filename
+        proposal.image = {
+            data: fs.readFileSync(path.join('public/uploads/' + req.body.file.filename)),
+            contentType: req.body.mimetype
+        }
         await proposal.save()
         res.redirect('/profile')
     } catch (err) {
@@ -48,6 +53,7 @@ async function show (req, res) {
     try {
         // Get the proposal user just clicked on
         const proposal = await Proposal.findById(req.params.id)
+        console.log(proposal)
         // Get the bids attached to this proposal
         const bids = await Bid.find({ parentProposal: req.params.id })
         
