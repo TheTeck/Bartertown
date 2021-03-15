@@ -1,23 +1,26 @@
 <%- include('../../partials/header') %>
 
-<%= typeof msg !== 'undefined' ? msg : '' %>
-<form action="/proposals" method="POST" enctype="multipart/form-data">
-    <label for="title">Title:</label>
-    <input type="text" name="title" required>
-    <label for="description">Description:</label>
-    <textarea name="description" cols="50" rows="6" required></textarea>
+<div class="container">
+    <%= typeof msg !== 'undefined' ? msg : '' %>
+    <form action="/proposals" method="POST" enctype="multipart/form-data">
+        <label for="title">Title:</label>
+        <input type="text" name="title" required>
+        <label for="description">Description:</label>
+        <textarea name="description" cols="50" rows="6" required></textarea>
 
-    <div class="file-field input-field">
-        <div class="btn">
-            <span>Image File</span>
-            <input type="file" name="image" required>
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>Image File</span>
+                <input type="file" name="image" required>
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
         </div>
-        <div class="file-path-wrapper">
-          <input class="file-path validate" type="text">
-        </div>
-    </div>
-    <button type="submit">Submit</button>
-</form>
+        <button class="btn waves-effect waves-light" type="submit">Submit 
+            <i class="material-icons right">send</i></button>
+    </form>
+</div>
 
 
 <%- include('../../partials/footer') %>

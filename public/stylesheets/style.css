@@ -1,46 +1,19 @@
-.brand-logo {
-  margin-left: 15px;
-}
 
-.card .card-content .card-title {
-  margin-bottom: 10px;
-}
-
-#search-row form {
-  padding-top: 20px;
-}
-
-.student-name {
-  position: relative;
-  top: -5px;
-}
-
-.collection-item form {
-  margin-top: -5px;
-}
 
 .prop-card {
-  margin-top: 30px;
-  width: 200px;
+  width: 100%;
   height: 200px;
   background: linear-gradient(rgb(194, 183, 174), grey);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.56);
   position: relative;
+  margin: 0;
 }
 
 .prop-card img {
   height: 100%;
-}
-
-.display-all {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
 }
 
 .prop-card p {
@@ -48,7 +21,6 @@
   font-size: 20px;
   text-align: center;
   color: rgb(202, 199, 199);
-  padding: 5px;
   width: 100%;
   margin: 0;
   z-index: 2;
@@ -60,7 +32,7 @@
 
 .prop-card img {
   position: absolute;
-  width: 200px;
+  width: 100%;
 }
 
 .tiny-name {
@@ -84,4 +56,8 @@
   align-items: center;
   width: 50px;
   height: 20px;
+}
+
+.no-pad {
+  padding: 0 !important;
 }

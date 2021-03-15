@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Proposal = require('../models/proposal')
+const Bid = require('../models/bid')
 
 module.exports = {
     show,
@@ -14,9 +15,12 @@ async function show (req, res) {
         const name = user.username ? user.username : user.email
 
         // Get user's proposals to display
-        const proposals = await Proposal.find({owner: req.user._id})
+        const proposals = await Proposal.find({ owner: req.user._id })
+
+        // Get user's bids on other users' proposals
+        const bids = await Bid.find({ owner: req.user._id })
         
-        res.render('profile/index', { name: name, proposals })
+        res.render('profile/index', { name: name, proposals, bids })
     } catch (err) {
         res.send(err)
     }     

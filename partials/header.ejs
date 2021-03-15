@@ -9,17 +9,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="/stylesheets/style.css" />
   <!-- JavaScript for Materialize -->
+  <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body>
   <div class="navbar-fixed">
     <nav>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper cyan darken-2">
         <% if (user) { %>
-          <a href="/profile" class="brand-logo left">Bartertown</a>
+          <a href="/profile" class="brand-logo center">Bartertown</a>
+          <ul class="left">
+            <li><a href="/profile" class="left"><i class="material-icons left">home</i>Home</a></li>
+            <li><a href="/proposals"><i class="material-icons left">public</i>Explore Trades</a></li>
+          </ul>          
         <% } else { %>
-          <a href="/" class="brand-logo left">Bartertown</a>
+          <a href="/" class="brand-logo center">Bartertown</a>
         <% } %>
         <ul class="right">
           <li>Hi, <%= name %></li>

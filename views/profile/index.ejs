@@ -1,16 +1,40 @@
 <%- include('../../partials/header') %>
-<a href="/profile/edit">Edit your information</a>
-<a href="/proposals/new">Create a New Trade Proposal</a>
-<a href="/proposals">Explore All Community Proposals</a>
 
-<h3>All of your current proposals:</h3>
-<div class="display-all">
-    <% proposals.forEach(proposal => { %>
-        <a class="card-anchor" href="/proposals/<%= proposal._id %>"><div class="prop-card">
-            <img src="/uploads/<%= proposal.image %>" alt="items">
-            <p><%= proposal.title %></p>
-        </div></a>
-    <% }) %>
+<div class="container">
+    <a href="/profile/edit">Edit your information</a>
+    <a href="/proposals/new">Create a New Trade Proposal</a>
+
+    <div class="section">
+        <h3>All of your current proposals:</h3>
+        <div class="row carousel">
+            <% proposals.forEach(proposal => { %>
+                <a class="card-anchor hoverable z-depth-1 col s3 carousel-item no-pad" href="/proposals/<%= proposal._id %>"><div class="prop-card">
+                    <img src="/uploads/<%= proposal.image %>" alt="image of <%= proposal.title %>">
+                    <p><%= proposal.title %></p>
+                </div></a>
+            <% }) %>
+          </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+        <h3>All of your current bids:</h3>
+        <div class="row carousel">
+            <% bids.forEach(bid => { %>
+                <a class="card-anchor hoverable z-depth-1 col s3 carousel-item no-pad" href="/bids/<%= bid._id %>"><div class="prop-card">
+                    <img src="/uploads/<%= bid.image %>" alt="image of <%= bid.title %>">
+                    <p><%= bid.title %></p>
+                </div></a>
+            <% }) %>
+        </div>
+    </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('.carousel').carousel();
+    });
+</script>
 
 <%- include('../../partials/footer') %>
