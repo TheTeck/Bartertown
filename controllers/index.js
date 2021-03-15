@@ -1,4 +1,3 @@
-const User = require('../models/user');
 const Proposal = require('../models/proposal')
 
 module.exports = {
@@ -6,11 +5,6 @@ module.exports = {
 }
 
 async function index (req, res, next) {
-
   const proposals = await Proposal.find({})
-
-  res.render('index', {
-    name: 'Stranger',
-    proposals
-  })
+  res.render('index', { name: 'Stranger', proposals })
 }

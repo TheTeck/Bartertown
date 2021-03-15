@@ -12,7 +12,7 @@ async function show (req, res) {
     try {
         // Get user name for nav
         const user = await User.findById(req.user._id)
-        const name = user.username ? user.username : user.email
+        if (!user.username) user.username = user.email
 
         // Get user's proposals to display
         const proposals = await Proposal.find({ owner: req.user._id })
@@ -20,20 +20,14 @@ async function show (req, res) {
         // Get user's bids on other users' proposals
         const bids = await Bid.find({ owner: req.user._id })
         
-        res.render('profile/index', { name: name, proposals, bids })
+        res.render('profile/index', { name: user.username, proposals, bids })
     } catch (err) {
         res.send(err)
     }     
 }
 
-async function edit (req, res) {
-    try {
-        // Get user name for nav
-        const user = await User.findById(req.user._id)
-        res.render('profile/edit', { name: user.username })
-    } catch (err) {
-        res.send(err)
-    }
+function edit (req, res) {
+    res.render('profile/edit', { name: req.user.username })
 }
 
 async function update (req, res) {

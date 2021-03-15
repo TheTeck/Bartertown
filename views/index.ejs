@@ -1,12 +1,16 @@
 <%- include('../partials/header') %>
 <h3>Get any of these goods by trading your own!</h3>
-<ul class="display-all">
-    <% proposals.forEach(proposal => { %>
-        <div class="prop-card">
-            <img src="/uploads/<%= proposal.image %>" alt="items">
-            <p><%= proposal.title %></p>
-        </div>
-    <% }) %>
-</ul>
+<div class="container">
+    <ul>
+        <% proposals.forEach(proposal => { %>
+            <div class="row">
+            <div class="prop-card hoverable z-depth-1 col s3">
+                <img src="/uploads/<%= proposal.image %>" alt="items">
+                <p><%= proposal.title %></p>
+            </div>
+            </div>
+        <% }) %>
+    </ul>
+</div>
 
 <%- include('../partials/footer') %>

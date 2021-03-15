@@ -4,36 +4,43 @@
     <a href="/profile/edit">Edit your information</a>
     <a href="/proposals/new">Create a New Trade Proposal</a>
 
-    <div class="section">
-        <h3>All of your current proposals:</h3>
+    <h3>All of your current proposals:</h3>
         <div class="row carousel">
             <% proposals.forEach(proposal => { %>
-                <a class="card-anchor hoverable z-depth-1 col s3 carousel-item no-pad" href="/proposals/<%= proposal._id %>"><div class="prop-card">
-                    <img src="/uploads/<%= proposal.image %>" alt="image of <%= proposal.title %>">
-                    <p><%= proposal.title %></p>
-                </div></a>
+                <a class="card-anchor hoverable z-depth-1 col s3 carousel-item no-pad" href="/proposals/<%= proposal._id %>">
+                    <div class="prop-card">
+                        <img src="/uploads/<%= proposal.image %>" alt="image of <%= proposal.title %>">
+                        <p><%= proposal.title %></p>
+                    </div>
+                </a>
             <% }) %>
           </div>
-    </div>
 
     <div class="divider"></div>
 
+    <h3>All of your current bids:</h3>
     <div class="section">
-        <h3>All of your current bids:</h3>
         <div class="row carousel">
             <% bids.forEach(bid => { %>
-                <a class="card-anchor hoverable z-depth-1 col s3 carousel-item no-pad" href="/bids/<%= bid._id %>"><div class="prop-card">
-                    <img src="/uploads/<%= bid.image %>" alt="image of <%= bid.title %>">
-                    <p><%= bid.title %></p>
-                </div></a>
+                <a class="card-anchor hoverable z-depth-1 col s3 carousel-item no-pad" href="/bids/<%= bid._id %>">
+                    <div class="prop-card">
+                        <img src="/uploads/<%= bid.image %>" alt="image of <%= bid.title %>">
+                        <p><%= bid.title %></p>
+                    </div>
+                </a>
             <% }) %>
         </div>
     </div>
 </div>
 
 <script>
-    $(document).ready(function(){
-        $('.carousel').carousel();
+     document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.carousel');
+        var instances = M.Carousel.init(elems, {
+            fullwidth: true,
+            numVisible: 7,
+            padding: 5
+        });
     });
 </script>
 

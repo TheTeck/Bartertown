@@ -16,22 +16,14 @@ async function index (req, res) {
     try {
         // Getting all of the proposal to view
         const proposals = await Proposal.find({})
-        // Just getting the username for the nav
-        const user = await User.findById(req.user._id)
-        res.render('proposals/index', { name: user.username, proposals })
+        res.render('proposals/index', { name: req.user.username, proposals })
     } catch (err) {
         res.send(err)
     }
 }
 
-async function newProposal (req, res) {
-    try {
-        // Just getting the username for the nav
-        const user = await User.findById(req.user._id)
-        res.render('proposals/new', { name: user.username })
-    } catch (err) {
-        res.send(err)
-    }    
+function newProposal (req, res) {
+    res.render('proposals/new', { name: req.user.username })
 }
 
 async function create (req, res) {
@@ -56,12 +48,10 @@ async function show (req, res) {
     try {
         // Get the proposal user just clicked on
         const proposal = await Proposal.findById(req.params.id)
-        // Just getting the username for the nav
-        const user = await User.findById(req.user._id)
         // Get the bids attached to this proposal
         const bids = await Bid.find({ parentProposal: req.params.id })
         
-        res.render('proposals/show', { name: user.username, proposal, bids, isOwner: proposal.owner.equals(req.user._id) })    
+        res.render('proposals/show', { name: req.user.username, proposal, bids, isOwner: proposal.owner.equals(req.user._id) })    
     } catch (err) {
         res.send(err)
     }
