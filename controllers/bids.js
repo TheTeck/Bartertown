@@ -35,6 +35,7 @@ async function create (req, res) {
             contentType: req.body.mimetype
         }
         await bid.save()
+        console.log(bid, req.params.id)
         res.redirect(`/proposals/${req.params.id}`)
     } catch (err) {
         res.send(err)

@@ -51,12 +51,15 @@ async function create (req, res) {
 
 async function show (req, res) {
     try {
+        const allBids = await Bid.find({})
+        console.log(allBids)
         // Get the proposal user just clicked on
         const proposal = await Proposal.findById(req.params.id)
-        console.log(proposal)
         // Get the bids attached to this proposal
         const bids = await Bid.find({ parentProposal: req.params.id })
-        
+        // Increase views count
+        proposal.views++
+        await proposal.save()
         res.render('proposals/show', { name: req.user.username, proposal, bids, isOwner: proposal.owner.equals(req.user._id) })    
     } catch (err) {
         res.send(err)
@@ -65,6 +68,7 @@ async function show (req, res) {
 
 async function deleteProposal (req, res) {
     try {
+        await Bid.deleteMany({ parentProposal: req.params.id })
         // Get the proposal from the model and delete it
         await Proposal.findByIdAndDelete(req.params.id)
         res.redirect('/profile')

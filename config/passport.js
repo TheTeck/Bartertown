@@ -23,7 +23,7 @@ passport.use(new GoogleStrategy({
       } else {
         // if we didn't find the user go ahead create them
         const newUser = new User({
-          name: profile.displayName,
+          username: profile.displayName,
           email: profile.emails[0].value,
           googleId: profile.id
         })
