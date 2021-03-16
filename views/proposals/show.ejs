@@ -1,58 +1,62 @@
 <%- include('../../partials/header') %>
 
-<img class="show-view-image" src="data:image/<%= proposal.image.contentType%>;base64,
-                     <%=proposal.image.data.toString('base64')%>">
+<div class="container">
+    <div class="row top-buffer">
+        <div class="col s5">
+            <img class="show-view-image" src="data:image/<%= proposal.image.contentType%>;base64,
+                                <%=proposal.image.data.toString('base64')%>">
+            <div class="icon-couplet col s2">
+                <i class="material-icons teal-text">visibility</i>
+                <p><%= proposal.views %></p>
+            </div>
+            <div class="icon-couplet col s2">
+                <i class="material-icons teal-text">message</i>
+                <p><%= proposal.comments.length %></p>
+            </div>
+            <div class="icon-couplet col s2">
+                <i class="material-icons teal-text">sell</i>
+                <p><%= bids.length %></p>
+            </div>
+        </div>
 
-
-<div class="icon-couplet">
-    <i class="material-icons">visibility</i>
-    <p><%= proposal.views %></p>
-</div>
-
-<div class="icon-couplet">
-    <i class="material-icons">message</i>
-    <p><%= proposal.comments.length %></p>
-</div>
-
-<div class="icon-couplet">
-    <i class="material-icons">sell</i>
-    <p><%= bids.length %></p>
-</div>
-
-<h3><%= proposal.title %></h3>
-<p><%= proposal.description %></p>
-
-<% if (isOwner) { %> 
-    <form action="/proposals/<%= proposal._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete Trade Proposal</button>
-    </form>
-<% } else { %>
-    <a href="/proposals/<%= proposal._id %>/bids/new">Make A Bid</a>
-<% } %>
-
-<% if (bids) { %>
-    <div class="display-all">
-        <% bids.forEach(bid => { %>
-            <a class="card-anchor" href="/bids/<%= bid._id %>"><div class="prop-card">
-                <img src="/uploads/<%= bid.image %>" alt="<%= bid.title %>">
-                <h6 class="tiny-name"><%= bid.ownerName %></h6>
-                <p><%= bid.title %></p>
-            </div></a>
-        <% }) %>
+        <div class="col s7 ">
+            <h3 class="teal-text"><%= proposal.title %></h3>
+            <p><%= proposal.description %></p>
+        </div>
     </div>
-<% } %>
 
-<% if (proposal.comments.length > 0) { %>
-    <% proposal.comments.forEach(comment => { %>
-        <p><span><%= comment.owner %> </span> <%= comment.content %></p>
-    <% }) %>
-<% } else { %>
-    <p>There are no comments yet</p>
-<% } %>
+    <% if (isOwner) { %> 
+        <form action="/proposals/<%= proposal._id %>?_method=DELETE" method="POST">
+            <button type="submit">Delete Trade Proposal</button>
+        </form>
+    <% } else { %>
+        <a href="/proposals/<%= proposal._id %>/bids/new">Make A Bid</a>
+    <% } %>
 
-<form action="/proposals/<%= proposal._id %>/comments" method="POST">
-    <textarea name="content" cols="40" rows="4"></textarea>
-    <button type="submit">Add Comment</button>
-</form>
+    <% if (bids) { %>
+        <div class="display-all">
+            <% bids.forEach(bid => { %>
+                <a class="card-anchor" href="/bids/<%= bid._id %>"><div class="prop-card">
+                    <img src="/uploads/<%= bid.image %>" alt="<%= bid.title %>">
+                    <h6 class="tiny-name"><%= bid.ownerName %></h6>
+                    <p><%= bid.title %></p>
+                </div></a>
+            <% }) %>
+        </div>
+    <% } %>
+
+    <% if (proposal.comments.length > 0) { %>
+        <% proposal.comments.forEach(comment => { %>
+            <p><span><%= comment.owner %> </span> <%= comment.content %></p>
+        <% }) %>
+    <% } else { %>
+        <p>There are no comments yet</p>
+    <% } %>
+
+    <form action="/proposals/<%= proposal._id %>/comments" method="POST">
+        <textarea name="content" cols="40" rows="4"></textarea>
+        <button type="submit">Add Comment</button>
+    </form>
+</div>
 
 <%- include('../../partials/footer') %>

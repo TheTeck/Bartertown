@@ -1,13 +1,14 @@
 <%- include('../../partials/header') %>
 
 <div class="container">
-    <a href="/profile/edit">Edit your information</a>
-    <a href="/proposals/new">Create a New Trade Proposal</a>
-
-    <h3>All of your current proposals:</h3>
-        <div class="row carousel">
+    <ul>
+        <li class="chip teal"><a class="white-text valign-wrapper" href="/profile/edit">Edit Info<i class="right tiny material-icons">edit</i></a></li>
+        <li class="chip teal"><a class="white-text valign-wrapper" href="/proposals/new">Create New Trade<i class="right tiny material-icons">sell</i></a></li>
+    </ul>
+    <h5>All of your current proposals:</h5>
+    <div class="row carousel">
             <% proposals.forEach(proposal => { %>
-                <a class="card-anchor hoverable z-depth-1 col s3 carousel-item no-pad" href="/proposals/<%= proposal._id %>">
+                <a class="card-anchor carousel-item no-pad" href="/proposals/<%= proposal._id %>">
                     <div class="prop-card">
                         <img src="data:image/<%= proposal.image.contentType%>;base64,
                             <%=proposal.image.data.toString('base64')%>" alt="image of <%= proposal.title %>">
@@ -19,19 +20,17 @@
 
     <div class="divider"></div>
 
-    <h3>All of your current bids:</h3>
-    <div class="section">
-        <div class="row carousel">
-            <% bids.forEach(bid => { %>
-                <a class="card-anchor hoverable z-depth-1 col s3 carousel-item no-pad" href="/bids/<%= bid._id %>">
-                    <div class="prop-card">
-                        <img src="data:image/<%= bid.image.contentType%>;base64,
-                            <%=bid.image.data.toString('base64')%>" alt="image of <%= bid.title %>">
-                        <p><%= bid.title %></p>
-                    </div> 
-                </a>
-            <% }) %>
-        </div>
+    <h5>All of your current bids:</h5>
+    <div class="row carousel">
+        <% bids.forEach(bid => { %>
+            <a class="card-anchor carousel-item no-pad" href="/bids/<%= bid._id %>">
+                <div class="prop-card">
+                    <img src="data:image/<%= bid.image.contentType%>;base64,
+                        <%=bid.image.data.toString('base64')%>" alt="image of <%= bid.title %>">
+                    <p><%= bid.title %></p>
+                </div> 
+            </a>
+        <% }) %>
     </div>
 </div>
 
@@ -40,8 +39,7 @@
         var elems = document.querySelectorAll('.carousel');
         var instances = M.Carousel.init(elems, {
             fullwidth: true,
-            numVisible: 7,
-            padding: 5
+            numVisible: 7
         });
     });
 </script>

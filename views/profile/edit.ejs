@@ -1,10 +1,12 @@
 <%- include('../../partials/header') %>
-<form action="/profile?_method=PUT" method="POST">
-    <label for="username">Username:</label>
-    <input type="text" name="username">
-    <label for="email">Email:</label>
-    <input type="email" name="email">
-    <button type="submit">Submit</button>
-</form>
+<div class="container top-buffer">
+    <form action="/profile?_method=PUT" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" name="username">
+        <label for="email">Email:</label>
+        <input type="email" name="email">
+        <button class="btn waves-effect waves-light teal" type="submit">Update</button>
+    </form>
+</div>
 
 <%- include('../../partials/footer') %>

@@ -1,14 +1,13 @@
 <%- include('../partials/header') %>
-<h3>Get any of these goods by trading your own!</h3>
+
 <div class="container">
-    <ul>
+    <h5 class="center">Get any of these goods by trading your own!</h5>
+    <ul class="flex-list row">
         <% proposals.forEach(proposal => { %>
-            <div class="row">
             <div class="prop-card hoverable z-depth-1 col s3 no-pad">
                 <img src="data:image/<%= proposal.image.contentType%>;base64,
                             <%=proposal.image.data.toString('base64')%>" alt="image of <%= proposal.title %>">
                 <p><%= proposal.title %></p>
-            </div>
             </div>
         <% }) %>
     </ul>

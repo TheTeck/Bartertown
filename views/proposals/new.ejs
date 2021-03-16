@@ -1,15 +1,15 @@
 <%- include('../../partials/header') %>
 
-<div class="container">
+<div class="container top-buffer">
     <%= typeof msg !== 'undefined' ? msg : '' %>
     <form action="/proposals" method="POST" enctype="multipart/form-data">
         <label for="title">Title:</label>
-        <input type="text" name="title" required>
+        <input type="text" name="title" maxlength="20" required>
         <label for="description">Description:</label>
         <textarea name="description" cols="50" rows="6" required></textarea>
 
         <div class="file-field input-field">
-            <div class="btn">
+            <div class="btn blue-grey">
                 <span>Image File</span>
                 <input type="file" name="image" required>
             </div>
@@ -17,7 +17,7 @@
                 <input class="file-path validate" type="text">
             </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit">Submit 
+        <button class="btn waves-effect waves-light teal" type="submit">Submit 
             <i class="material-icons right">send</i></button>
     </form>
 </div>
