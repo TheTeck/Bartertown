@@ -93,3 +93,21 @@ input, textarea {
 .clickable:hover {
   opacity: .8;
 }
+
+.fill-parent {
+  width: 100%;
+}
+
+.comment-even {
+  border: 1px solid teal;
+  border-radius: 5px;
+  padding: 3px;
+  box-shadow: 0 0 3px teal;
+}
+
+.comment-odd {
+  border: 1px solid rgb(175, 229, 229);
+  border-radius: 5px;
+  padding: 3px;
+  box-shadow: 0 0 3px rgb(175, 229, 229);
+}

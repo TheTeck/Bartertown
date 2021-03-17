@@ -42,8 +42,12 @@
     <div class="row">
         <div class="col s12 m6 l7">
             <% if (proposal.comments.length > 0) { %>
-                <% proposal.comments.forEach(comment => { %>
-                    <p><span class="teal-text"><%= comment.owner %> </span> - <%= comment.content %></p>
+                <% proposal.comments.forEach((comment, index) => { %>
+                    <% if (index % 2) { %>
+                        <p class="comment-even"><span class="teal-text"><%= comment.owner %> </span> - <%= comment.content %></p>
+                    <% } else { %>
+                        <p class="comment-odd"><span class="teal-text"><%= comment.owner %> </span> - <%= comment.content %></p>
+                    <% } %>
                 <% }) %>
             <% } else { %>
                 <p>There are no comments yet</p>

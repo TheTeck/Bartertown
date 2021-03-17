@@ -1,37 +1,54 @@
 <%- include('../../partials/header') %>
 
-<img class="show-view-image" src="data:image/<%= bid.image.contentType%>;base64,
-                     <%=bid.image.data.toString('base64')%>">
+<div class="container">
+    <div class="row top-buffer">
+        <div class="col s5">
+            <img class="show-view-image" src="data:image/<%= bid.image.contentType%>;base64,
+                                <%=bid.image.data.toString('base64')%>">
+             <div class="icon-couplet left">
+                <i class="material-icons teal-text">message</i>
+                <p><%= bid.comments.length %></p>
+            </div>
+        </div>
 
-<div class="icon-couplet">
-    <i class="material-icons">visibility</i>
-    <p><%= bid.views %></p>
+        <div class="col s7 ">
+            <h3 class="teal-text"><%= bid.title %></h3>
+            <p><%= bid.description %></p>
+
+            <% if (isOwner) { %> 
+                <form class="top-buffer" action="/bids/<%= bid._id %>?_method=DELETE" method="POST">
+                    <button class="btn teal clickable" type="submit">Delete Bid 
+                        <i class="material-icons right">delete</i></button>
+                </form>
+            <% } else if (isPropOwner) { %>
+                <form class="top-buffer" action="/bids/<%= bid._id %>" method="POST">
+                    <button class="btn teal clickable" type="submit">Accept Bid 
+                        <i class="material-icons right">thumb_up</i></button>
+                </form>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="row">
+        <% if (bid.comments.length > 0) { %> 
+            <% bid.comments.forEach((comment, index) => { %>
+                <% if (index % 2) { %>
+                <p class="comment-even"><span class="teal-text"><%= comment.owner %> </span> - <%= comment.content %></p>
+                <% } else { %>
+                <p class="comment-odd"><span class="teal-text"><%= comment.owner %> </span> - <%= comment.content %></p>
+                <% } %>
+            <% }) %>
+        <% } else { %>
+            <p>There are no comments yet</p>
+        <% } %>
+
+        <form action="/bids/<%= bid._id %>/comments" method="POST">
+            <textarea name="content" cols="40" rows="4"></textarea>
+            <button class="btn teal clickable" type="submit">Add Comment</button>
+        </form>
+    </div>
 </div>
-
-<div class="icon-couplet">
-    <i class="material-icons">message</i>
-    <p><%= bid.comments.length %></p>
-</div>
-
-<p><%= bid.description %></p>
-
-<% if (isOwner) { %> 
-    <form action="/bids/<%= bid._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete Trade Bid</button>
-    </form>
-<% } %>
-
-<% if (bid.comments.length > 0) { %>
-    <% bid.comments.forEach(comment => { %>
-        <p><span><%= comment.owner %> </span> <%= comment.content %></p>
-    <% }) %>
-<% } else { %>
-    <p>There are no comments yet</p>
-<% } %>
-
-<form action="/bids/<%= bid._id %>/comments" method="POST">
-    <textarea name="content" cols="40" rows="4"></textarea>
-    <button type="submit">Add Comment</button>
-</form>
 
 <%- include('../../partials/footer') %>

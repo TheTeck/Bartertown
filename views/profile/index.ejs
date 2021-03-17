@@ -6,7 +6,8 @@
         <li class="chip teal"><a class="white-text valign-wrapper" href="/proposals/new">Create New Trade<i class="right tiny material-icons">sell</i></a></li>
     </ul>
     <h5>All of your current proposals:</h5>
-    <div class="row carousel">
+    <div class="row carousel valign-wrapper">
+        <% if (proposals.length > 0) { %>
             <% proposals.forEach(proposal => { %>
                 <a class="card-anchor carousel-item no-pad" href="/proposals/<%= proposal._id %>">
                     <div class="prop-card">
@@ -16,21 +17,28 @@
                     </div>
                 </a>
             <% }) %>
-          </div>
+        <% } else { %>
+            <p class="fill-parent center-align">You have no trade proposals yet</p>  
+        <% } %>
+    </div>
 
     <div class="divider"></div>
 
     <h5>All of your current bids:</h5>
-    <div class="row carousel">
-        <% bids.forEach(bid => { %>
-            <a class="card-anchor carousel-item no-pad" href="/bids/<%= bid._id %>">
-                <div class="prop-card">
-                    <img src="data:image/<%= bid.image.contentType%>;base64,
-                        <%=bid.image.data.toString('base64')%>" alt="image of <%= bid.title %>">
-                    <p><%= bid.title %></p>
-                </div> 
-            </a>
-        <% }) %>
+    <div class="row carousel valign-wrapper">
+        <% if (bids.length > 0) { %>
+            <% bids.forEach(bid => { %>
+                <a class="card-anchor carousel-item no-pad" href="/bids/<%= bid._id %>">
+                    <div class="prop-card">
+                        <img src="data:image/<%= bid.image.contentType%>;base64,
+                            <%=bid.image.data.toString('base64')%>" alt="image of <%= bid.title %>">
+                        <p><%= bid.title %></p>
+                    </div> 
+                </a>
+            <% }) %>
+        <% } else { %>
+            <p class="fill-parent center-align">You have no bids yet</p>  
+        <% } %>
     </div>
 </div>
 
