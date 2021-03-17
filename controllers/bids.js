@@ -14,7 +14,7 @@ async function newBid (req, res) {
     try {
         // Pass the proposal we're adding a bid to
         const proposal = await Proposal.findById(req.params.id)
-        res.render('bids/new', { name: req.user.username, proposal })
+        res.render('bids/new', { proposal })
     } catch (err) {
         res.send(err)
     }
@@ -46,7 +46,7 @@ async function show (req, res) {
         // Get the bid to show in view
         const bid = await Bid.findById(req.params.id)
         const proposal = await Proposal.findById(bid.parentProposal)
-        res.render('bids/show', { name: req.user.username, bid , isPropOwner: proposal.owner.equals(req.user.id),
+        res.render('bids/show', { bid , isPropOwner: proposal.owner.equals(req.user.id),
                                  isOwner: req.user._id.equals(bid.owner) })
     } catch (err) {
         res.send(err)  

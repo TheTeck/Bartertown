@@ -11,7 +11,7 @@ async function index (req, res, next) {
     const proposals = await Proposal.find({})
     const bids = await Bid.find({})
     if (bids.length > 20) bids.slice(0, 20)
-    res.render('index', { name: 'Stranger', proposals })
+    res.render('index', { proposals })
   } catch (err) {
     res.send(err)
   }

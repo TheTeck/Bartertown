@@ -18,14 +18,14 @@ async function index (req, res) {
     try {
         // Getting all of the proposal to view
         const proposals = await Proposal.find({})
-        res.render('proposals/index', { name: req.user.username, proposals })
+        res.render('proposals/index', { proposals })
     } catch (err) {
         res.send(err)
     }
 }
 
 function newProposal (req, res) {
-    res.render('proposals/new', { name: req.user.username })
+    res.render('proposals/new')
 }
 
 async function create (req, res) {
@@ -60,7 +60,7 @@ async function show (req, res) {
         // Increase views count
         proposal.views++
         await proposal.save()
-        res.render('proposals/show', { name: req.user.username, proposal, bids, isOwner: proposal.owner.equals(req.user._id) })    
+        res.render('proposals/show', { proposal, bids, isOwner: proposal.owner.equals(req.user._id) })    
     } catch (err) {
         res.send(err)
     }

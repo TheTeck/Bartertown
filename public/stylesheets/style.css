@@ -111,3 +111,7 @@ input, textarea {
   padding: 3px;
   box-shadow: 0 0 3px rgb(175, 229, 229);
 }
+
+.center-area {
+  height: 300px;
+}

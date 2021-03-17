@@ -10,24 +10,20 @@ module.exports = {
 
 async function show (req, res) {
     try {
-        // Get user name for nav
-        const user = await User.findById(req.user._id)
-        if (!user.username) user.username = user.email
-
         // Get user's proposals to display
         const proposals = await Proposal.find({ owner: req.user._id })
 
         // Get user's bids on other users' proposals
         const bids = await Bid.find({ owner: req.user._id })
         
-        res.render('profile/index', { name: user.username, proposals, bids })
+        res.render('profile/index', { proposals, bids })
     } catch (err) {
         res.send(err)
     }     
 }
 
 function edit (req, res) {
-    res.render('profile/edit', { name: req.user.username })
+    res.render('profile/edit')
 }
 
 async function update (req, res) {

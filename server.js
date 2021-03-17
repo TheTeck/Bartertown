@@ -23,6 +23,7 @@ const profileRoutes = require('./routes/profile')
 const proposalsRoutes = require('./routes/proposals')
 const bidsRoutes = require('./routes/bids')
 const commentsRoutes = require('./routes/comments')
+const dealsRoutes = require('./routes/deals')
 
 
 
@@ -63,6 +64,7 @@ app.use('/profile', profileRoutes)
 app.use('/proposals', proposalsRoutes)
 app.use('/', bidsRoutes)
 app.use('/', commentsRoutes)
+app.use('/deals', dealsRoutes)
 
 
 // invalid request, send 404 page
