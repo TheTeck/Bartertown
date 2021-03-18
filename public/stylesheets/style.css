@@ -74,7 +74,7 @@ h5, h3, p {
   padding: 0 !important;
 }
 
-.carousel {
+.spotlight {
   height: 250px;
   background: radial-gradient(65% 35% at center bottom, rgb(214, 213, 212) 0%, rgb(23, 23, 23) 60%)
 }
