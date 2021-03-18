@@ -43,6 +43,15 @@ async function create (req, res) {
             contentType: req.body.mimetype
         }
         await proposal.save()
+
+        fs.unlink(req.file.path, function (err) {
+            if (err) {
+                console.log("unlink failed", err);
+            } else {
+                console.log("file deleted");
+            }
+        });
+
         res.redirect('/profile')
     } catch (err) {
         res.send(err)
@@ -52,7 +61,6 @@ async function create (req, res) {
 async function show (req, res) {
     try {
         const allBids = await Bid.find({})
-        console.log(allBids)
         // Get the proposal user just clicked on
         const proposal = await Proposal.findById(req.params.id)
         // Get the bids attached to this proposal

@@ -2,15 +2,15 @@
 
 <div class="container">
     <h5 class="center">Get any of these goods by trading your own!</h5>
-    <ul class="flex-list row">
+    <div class="flex-list row">
         <% proposals.forEach(proposal => { %>
-            <div class="prop-card hoverable z-depth-1 col s3 no-pad">
+            <div class="prop-card hoverable z-depth-1 col s3 no-pad top-buffer">
                 <img src="data:image/<%= proposal.image.contentType%>;base64,
                             <%=proposal.image.data.toString('base64')%>" alt="image of <%= proposal.title %>">
                 <p><%= proposal.title %></p>
             </div>
         <% }) %>
-    </ul>
+        </div>
 </div>
-
+ 
 <%- include('../partials/footer') %>

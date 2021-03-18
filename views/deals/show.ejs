@@ -1,0 +1,59 @@
+<%- include('../../partials/header') %>
+
+<div class="container">
+    <div class="row top-buffer valign-wrapper">
+        <div class="col s6">
+            <img class="show-view-image" src="data:image/<%= deal.image.contentType%>;base64,
+                                <%= deal.image.data.toString('base64')%>">
+            <p>Proposal by <%= deal.ownerName %></p>
+        </div>
+        <div class="col s6">
+            <img class="show-view-image" src="data:image/<%= deal.image2.contentType%>;base64,
+                                <%= deal.image2.data.toString('base64')%>">
+            <p>Bid by <%= deal.ownerName2 %></p>
+        </div>  
+    </div>
+
+    <div class="row">
+        <div class="col s6">
+            <h3 class="teal-text"><%= deal.title %></h3>
+            <p><%= deal.description %></p>
+        </div>
+        <div class="col s6">
+            <h3 class="teal-text"><%= deal.title2 %></h3>
+            <p><%= deal.description2 %></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <form class="top-buffer col s12 row" action="/deals/<%= deal._id %>?_method=DELETE" method="POST">
+            <button class="btn teal clickable center fill-parent col s3" type="submit">
+                    Delete Deal<i class="material-icons right">delete</i>
+            </button>
+        </form>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="row">
+        <% if (deal.comments.length > 0) { %> 
+            <% deal.comments.forEach((comment, index) => { %>
+                <% if (index % 2) { %>
+                <p class="comment-even"><span class="teal-text"><%= comment.owner %> </span> - <%= comment.content %></p>
+                <% } else { %>
+                <p class="comment-odd"><span class="teal-text"><%= comment.owner %> </span> - <%= comment.content %></p>
+                <% } %>
+            <% }) %>
+        <% } else { %>
+            <p>There are no messages between <%= deal.ownerName %> and <%= deal.ownerName2 %> yet</p>
+        <% } %>
+
+        <form action="/deals/<%= deal._id %>/comments" method="POST">
+            <textarea name="content" cols="40" rows="4"></textarea>
+            <button class="btn teal clickable" type="submit">Add Message</button>
+        </form>
+    </div>
+</div>
+
+
+<%- include('../../partials/footer') %>

@@ -1,10 +1,12 @@
 const Proposal = require('../models/proposal')
 const User = require('../models/user')
 const Bid = require('../models/bid')
+const Deal = require('../models/deal')
 
 module.exports = {
     createProposal,
-    createBid
+    createBid,
+    createDeal
 }
 
 
@@ -31,6 +33,24 @@ async function createBid (req, res) {
         })
         await bid.save()
         res.redirect(`/bids/${bid._id}`)
+    } catch (err) {
+        res.send(err)
+    }
+}
+
+async function createDeal (req, res) {
+    try {
+        console.log('<-------------------1')
+        const deal = await Deal.findById(req.params.id)
+        console.log('<-------------------2')
+        deal.comments.push({
+            owner: req.user.username,
+            content: req.body.content
+        })
+        console.log('<-------------------3')
+        await deal.save()
+        console.log('<-------------------4')
+        res.redirect(`/deals/${deal._id}`)
     } catch (err) {
         res.send(err)
     }

@@ -8,7 +8,7 @@ h5, h3, p {
 
 .prop-card {
   width: 250px;
-  height: 200px;
+  height: 250px;
   background: linear-gradient(rgb(194, 183, 174), grey);
   display: flex;
   flex-direction: column;
@@ -114,4 +114,8 @@ input, textarea {
 
 .center-area {
   height: 300px;
+}
+
+.indicator {
+  font-size: 20px;
 }

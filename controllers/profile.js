@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const Proposal = require('../models/proposal')
 const Bid = require('../models/bid')
+const Deal = require('../models/deal')
 
 module.exports = {
     show,
@@ -12,11 +13,11 @@ async function show (req, res) {
     try {
         // Get user's proposals to display
         const proposals = await Proposal.find({ owner: req.user._id })
-
         // Get user's bids on other users' proposals
         const bids = await Bid.find({ owner: req.user._id })
-        
-        res.render('profile/index', { proposals, bids })
+        // Get user's deals made
+        const deals = await Deal.find({ $or:[{ owner: req.user._id }, { owner2: req.user._id }] })
+        res.render('profile/index', { proposals, bids, deals })
     } catch (err) {
         res.send(err)
     }     

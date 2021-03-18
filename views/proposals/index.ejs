@@ -1,15 +1,13 @@
 <%- include('../../partials/header') %>
 
 <div class="container">
-    <div class="row col s12">
+    <div class="row flex-list">
         <% proposals.forEach(proposal => { %>
-            <a class="card-anchor" href="/proposals/<%= proposal._id %>">
-                <div class="prop-card no-pad col s3">
-                    <img src="data:image/<%= proposal.image.contentType%>;base64,
-                                <%=proposal.image.data.toString('base64')%>" alt="image of <%= proposal.title %>">
-                    <h6 class="tiny-name"><%= proposal.ownerName %></h6>
-                    <p><%= proposal.title %></p>
-                </div>
+            <a class="prop-card hoverable z-depth-1 no-pad col s3 top-buffer" href="/proposals/<%= proposal._id %>">
+                <img src="data:image/<%= proposal.image.contentType%>;base64,
+                             <%=proposal.image.data.toString('base64')%>" alt="image of <%= proposal.title %>">
+                <h6 class="tiny-name"><%= proposal.ownerName %></h6>
+                <p><%= proposal.title %></p>
             </a>
         <% }) %>
     </div>

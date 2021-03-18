@@ -5,7 +5,8 @@
         <li class="chip teal"><a class="white-text valign-wrapper" href="/profile/edit">Edit Info<i class="right tiny material-icons">edit</i></a></li>
         <li class="chip teal"><a class="white-text valign-wrapper" href="/proposals/new">Create New Trade<i class="right tiny material-icons">sell</i></a></li>
     </ul>
-    <h5>All of your current proposals:</h5>
+    <h5>All of your current proposals</h5>
+    <div class="teal btn-floating valign-center center indicator"><%= proposals.length %></div>
     <div class="row carousel valign-wrapper">
         <% if (proposals.length > 0) { %>
             <% proposals.forEach(proposal => { %>
@@ -24,7 +25,27 @@
 
     <div class="divider"></div>
 
-    <h5>All of your current bids:</h5>
+    <h5>All of your current deals</h5>
+    <div class="teal btn-floating valign-center center indicator"><%= deals.length %></div>
+    <div class="row carousel valign-wrapper">
+        <% if (deals.length > 0) { %>
+            <% deals.forEach(deal => { %>
+                <a class="card-anchor carousel-item no-pad" href="/deals/<%= deal._id %>">
+                    <div class="prop-card">
+                        <img src="data:image/<%= deal.image.contentType%>;base64,
+                            <%=deal.image.data.toString('base64')%>" alt="image of <%= deal.title %>">
+                        <p><%= deal.title %></p>
+                    </div> 
+                </a>
+            <% }) %>
+        <% } else { %>
+            <p class="fill-parent center-align">You have no deals made yet</p>  
+        <% } %>
+    </div>
+    <div class="divider"></div>
+
+    <h5>All of your current bids</h5>
+    <div class="teal btn-floating valign-center center indicator"><%= bids.length %></div>
     <div class="row carousel valign-wrapper">
         <% if (bids.length > 0) { %>
             <% bids.forEach(bid => { %>
@@ -40,6 +61,7 @@
             <p class="fill-parent center-align">You have no bids yet</p>  
         <% } %>
     </div>
+
 </div>
 
 <script>
