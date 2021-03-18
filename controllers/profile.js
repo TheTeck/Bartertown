@@ -1,7 +1,8 @@
 const User = require('../models/user');
 const Proposal = require('../models/proposal')
 const Bid = require('../models/bid')
-const Deal = require('../models/deal')
+const Deal = require('../models/deal');
+const proposal = require('../models/proposal');
 
 module.exports = {
     show,

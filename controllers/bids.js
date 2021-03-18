@@ -34,7 +34,12 @@ async function create (req, res) {
             contentType: req.body.mimetype
         }
         await bid.save()
-        console.log(bid, req.params.id)
+        
+        // Indicate in parent proposal there is a new bid
+        const proposal = await Proposal.findById(bid.parentProposal)
+        proposal.newBid = true
+        await proposal.save()
+        console.log( proposal)
         res.redirect(`/proposals/${req.params.id}`)
     } catch (err) {
         res.send(err)

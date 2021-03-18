@@ -67,6 +67,10 @@ async function show (req, res) {
         const bids = await Bid.find({ parentProposal: req.params.id })
         // Increase views count
         proposal.views++
+        // Reset new bid activity
+        if (proposal.owner.equals(req.user.id)) {
+            proposal.newBid = false
+        }
         await proposal.save()
         res.render('proposals/show', { proposal, bids, isOwner: proposal.owner.equals(req.user._id) })    
     } catch (err) {
