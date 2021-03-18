@@ -28,9 +28,9 @@ const bidSchema = new Schema({
         data: Buffer,
         contentType: String
     },
-    likes: {
-        type: Number,
-        default: 0
+    newBid: {
+        type: Boolean,
+        default: false
     },
     comments: [commentSchema]
 })

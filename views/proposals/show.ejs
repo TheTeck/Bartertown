@@ -66,6 +66,10 @@
                     <% bids.forEach(bid => { %>
                         <a class="card-anchor" href="/bids/<%= bid._id %>">
                             <div class="prop-card">
+                                <% if (bid.newBid && proposal.owner.equals(user._id)) { %>
+                                    <div class="new-activity red btn-floating valign-center center indicator">
+                                        <i class="material-icons">new_releases</i></div>
+                                <% } %>
                                 <img src="data:image/<%= bid.image.contentType%>;base64,
                                         <%=bid.image.data.toString('base64')%>" alt="<%= bid.title %>">
                                 <h6 class="tiny-name"><%= bid.ownerName %></h6>

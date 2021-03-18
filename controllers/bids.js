@@ -28,6 +28,7 @@ async function create (req, res) {
         bid.owner = req.user._id
         bid.ownerName = req.user.username
         bid.parentProposal = req.params.id
+        bid.newBid = true
         // Get the image name from file saved in req.body (appended in router)
         bid.image = {
             data: fs.readFileSync(path.join('public/uploads/' + req.body.file.filename)),
@@ -39,7 +40,6 @@ async function create (req, res) {
         const proposal = await Proposal.findById(bid.parentProposal)
         proposal.newBid = true
         await proposal.save()
-        console.log( proposal)
         res.redirect(`/proposals/${req.params.id}`)
     } catch (err) {
         res.send(err)
@@ -51,6 +51,11 @@ async function show (req, res) {
         // Get the bid to show in view
         const bid = await Bid.findById(req.params.id)
         const proposal = await Proposal.findById(bid.parentProposal)
+        // Set newBid to false if owner of proposal views it
+        if (proposal.owner.equals(req.user.id)) {
+            bid.newBid = false
+            await bid.save()
+        }
         res.render('bids/show', { bid , isPropOwner: proposal.owner.equals(req.user.id),
                                  isOwner: req.user._id.equals(bid.owner) })
     } catch (err) {
