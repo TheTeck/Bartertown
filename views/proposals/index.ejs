@@ -2,6 +2,7 @@
 
 <div class="container">
     <div class="row flex-list">
+        <!-- Just show all of the proposals -->
         <% proposals.forEach(proposal => { %>
             <a class="prop-card hoverable z-depth-1 no-pad col s3 top-buffer" href="/proposals/<%= proposal._id %>">
                 <img src="data:image/<%= proposal.image.contentType%>;base64,

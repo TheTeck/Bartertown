@@ -37,11 +37,11 @@ const upload = multer ({
 }).single('image')
 
 
-router.get('/', proposalsCtlr.index)
-router.get('/new', proposalsCtlr.new)
-router.get('/:id', proposalsCtlr.show)
-router.post('/', uploader, proposalsCtlr.create)
-router.delete('/:id', proposalsCtlr.delete)
+router.get('/', isLoggedIn, proposalsCtlr.index)
+router.get('/new', isLoggedIn, proposalsCtlr.new)
+router.get('/:id', isLoggedIn, proposalsCtlr.show)
+router.post('/', uploader, isLoggedIn, proposalsCtlr.create)
+router.delete('/:id', isLoggedIn, proposalsCtlr.delete)
 
 
 // The middleware for multer
@@ -55,6 +55,13 @@ function uploader (req, res, next) {
             return next()
         }
     })
+}
+
+// custom authorization middleware function
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()) return next();
+    // req.isAuthenticated function is given to us by passport
+    res.redirect('/auth/google');
 }
 
 module.exports = router

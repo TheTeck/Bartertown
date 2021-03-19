@@ -44,6 +44,7 @@ async function create (req, res) {
         }
         await proposal.save()
 
+        // This deletes the photos from the uploads folder
         fs.unlink(req.file.path, function (err) {
             if (err) {
                 console.log("unlink failed", err);
@@ -80,6 +81,7 @@ async function show (req, res) {
 
 async function deleteProposal (req, res) {
     try {
+        // Delete all of the bids that make reference to this proposal
         await Bid.deleteMany({ parentProposal: req.params.id })
         // Get the proposal from the model and delete it
         await Proposal.findByIdAndDelete(req.params.id)

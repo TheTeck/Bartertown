@@ -2,15 +2,18 @@
 
 <div class="container">
     <div class="row top-buffer">
+        <!-- Show proposal with title and description-->
         <div class="col s5">
             <img class="show-view-image" src="data:image/<%= proposal.image.contentType%>;base64,
                                 <%=proposal.image.data.toString('base64')%>">
             <h3 class="teal-text"><%= proposal.title %></h3>
             <p><%= proposal.description %></p>
         </div>
+        <!-- Swap arrow icon in between -->
         <div class="col s2 center-area valign-wrapper">
             <i class="material-icons large teal-text center-align fill-parent">swap_horiz</i>
         </div>
+        <!-- Show bid with title and description-->
         <div class="col s5">
             <img class="show-view-image" src="data:image/<%= bid.image.contentType%>;base64,
                                 <%=bid.image.data.toString('base64')%>">
@@ -19,6 +22,7 @@
         </div>  
     </div>
 
+    <!-- Make A Deal button -->
     <div class="row">
         <form class="top-buffer col s12 row" action="/deals/<%= bid._id %>" method="POST">
             <div class="col s4"></div>

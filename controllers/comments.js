@@ -11,6 +11,7 @@ module.exports = {
 
 
 async function createProposal (req, res) {
+    // Just push the form value onto the proposal's comments array
     try {
         const proposal = await Proposal.findById(req.params.id)
         proposal.comments.push( {
@@ -25,6 +26,7 @@ async function createProposal (req, res) {
 }
 
 async function createBid (req, res) {
+    // Just push the form value onto the bid's comments array
     try {
         const bid = await Bid.findById(req.params.id)
         bid.comments.push( {
@@ -39,17 +41,14 @@ async function createBid (req, res) {
 }
 
 async function createDeal (req, res) {
+    // Just push the form value onto the deal's comments array
     try {
-        console.log('<-------------------1')
         const deal = await Deal.findById(req.params.id)
-        console.log('<-------------------2')
         deal.comments.push({
             owner: req.user.username,
             content: req.body.content
         })
-        console.log('<-------------------3')
         await deal.save()
-        console.log('<-------------------4')
         res.redirect(`/deals/${deal._id}`)
     } catch (err) {
         res.send(err)

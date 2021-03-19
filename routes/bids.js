@@ -34,10 +34,10 @@ const upload = multer ({
     }
 }).single('image')
 
-router.get('/bids/:id', bidsCtlr.show)
-router.get('/proposals/:id/bids/new', bidsCtlr.new)
-router.post('/proposals/:id/bids', uploader, bidsCtlr.create)
-router.delete('/bids/:id', bidsCtlr.delete)
+router.get('/bids/:id', isLoggedIn, bidsCtlr.show)
+router.get('/proposals/:id/bids/new', isLoggedIn, bidsCtlr.new)
+router.post('/proposals/:id/bids', isLoggedIn, uploader, bidsCtlr.create)
+router.delete('/bids/:id', isLoggedIn, bidsCtlr.delete)
 
 // The middleware for multer
 async function uploader (req, res, next) {
@@ -51,6 +51,13 @@ async function uploader (req, res, next) {
             return next()
         }
     })
+}
+
+// custom authorization middleware function
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()) return next();
+    // req.isAuthenticated function is given to us by passport
+    res.redirect('/auth/google');
 }
 
 module.exports = router

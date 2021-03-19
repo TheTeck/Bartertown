@@ -1,34 +1,70 @@
-# passport-boilerplate
+# Bartertown
+## Table Contents  
+* [Overview](#overview)
+* [Getting Started](#getting-started)
+* [Technologies Used](#technologies-used)
+* [Screenshots](#screenshots)
+* [Development](#development)  
+  * [Early Design Layout Wireframes](#early-design-layout-wireframes)
+  * [Original Entity Relational Diagram](#original-entity-relational-diagram)
+  * [Future Additions](#future-additions)
+---
+---
 
 
-This is your passport boilerplate.
+## Overview  
+*Bartertown* is an online trading site where users may find anything another user is wanting to trade and can propose their own trades. Once a trade has been proposed, other users may leave comments on the item's show page as well as make a bid or bids for that item with their own items. Those bids can also be commented upon by the community users. If the owner of the original trade proposal likes one of the bids, they can then decide to make a deal, which will create a private line of communication between the two users and will remove both items of the trade from the community.
 
-## Setup 
+---
+---
+## Getting Started  
+Explore 
+[Bartertown here](https://bartertown22.herokuapp.com/)  
 
-1. Clone the repo
-2. Rename the folder to your Project
-3. Delete the `.git` file, when you are in the root of the file, you can press `ls` and you should see a `.git` file, then go ahead and run `rm -rf .git`
+---
+View the 
+[Trello](https://trello.com/b/P49WDDj9/barter-town/) board with wireframes and ERD.
+
+---
+---
+## Technologies Used  
+Javascript, HTML, CSS, Node.js, Express.js, MongoDB, Mongoose.js, Multer.js, Passport.js and Materialize. 
+
+---
+---
+## Screenshots
+
+#### Landing page show community trades
+![Landing Page](./public/images/Landing.png) 
+#### Displays for trade proposals, bids and deals
+![Displays](./public/images/display.png) 
+#### A trade show view
+![Proposal Show](./public/images/viewtrade.png) 
+#### A trade show view with a bid
+![Proposal Show With Bid](./public/images/viewtradewithbid.png) 
+#### Making a deal
+![Deal Confirmation](./public/images/deal.png) 
+#### Trade proposal and bids have stats and can have comments
+![Stats](./public/images/statsandcomments.png) 
+#### Get notifications for new bids on your trade proposals
+![New Bid](./public/images/newbid.png) 
+
+---
+---
+## Development  
+### *Early Design Layout Wireframes*:  
+![Wireframe](./public/images/wf3.png)  
+![Wireframe](./public/images/wf1.png)
+![Wireframe](./public/images/wf2.png)  
+![Wireframe](./public/images/wf4.png) 
+### *Original Entity Relational Diagram*: 
+![ERD](./public/images/ERD.png)   
 
 
-#### Setup your git repo
-1. in the project root `git init`
-2. `git add .` to add all the starter code
-3. `git commit -m "setup boilerplate"` 
-4. go to github and create your github and create a repo (Without a readme or liscense you can add that later!)
-5. copy the remote address
-6. In your terminal add the remote `git remote add origin yourGithubRepo'sAddressGoesHere`
-7. `git pull origin master` If a screen pulls up asking you to do something just press `:q` and then `enter` (thats vim btw :) )
-8. `git push origin master`
-
-#### Setup your login
-
-0. Setup your database connection string
-1. Then Setup Your User Model, 
-2. Follow the steps from the lesson plan to get your Google login credentials for your `.env` file
-3. Setup the Code in your config passport 
-4. Setup your call back routes in your `routes/index`
-5. Setup a view and test your login!
-
-#### Make a commit 
-
-```git commit -m "setup up oauth and User Model"```
+---
+### *Future Additions*:  
+* Ability to edit and delete comments
+* New comment flags for the owner of the proposal or bid
+* Ability to add catagories to a trade proposal
+* Ability to sort community trade proposals by catagory, user, or time
+* Further develop visuals

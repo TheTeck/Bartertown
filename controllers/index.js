@@ -6,6 +6,7 @@ module.exports = {
 }
 
 async function index (req, res, next) {
+  // Just show all of the trades available
   try {
     const proposals = await Proposal.find({})
     console.log(proposals.length)

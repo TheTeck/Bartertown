@@ -12,6 +12,7 @@ module.exports = {
 
 async function newDeal (req, res) {
     try {
+        // Render a new page with both proposal and bid
         const bid = await Bid.findById(req.params.id)
         const proposal = await Proposal.findById(bid.parentProposal)
         res.render('deals/new', { bid, proposal })
@@ -22,6 +23,8 @@ async function newDeal (req, res) {
 
 async function create (req, res) {
     try {
+        // Transfer all the data from the proposal and bid into the
+        // new deal document
         const bid = await Bid.findById(req.params.id)
         const proposal = await Proposal.findById(bid.parentProposal)
         const deal = new Deal()

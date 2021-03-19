@@ -2,11 +2,13 @@
 
 <div class="container">
     <div class="row top-buffer valign-wrapper">
+        <!-- Show proposal with user name -->
         <div class="col s6">
             <img class="show-view-image" src="data:image/<%= deal.image.contentType%>;base64,
                                 <%= deal.image.data.toString('base64')%>">
             <p>Proposal by <%= deal.ownerName %></p>
         </div>
+        <!-- Show bid with user name -->
         <div class="col s6">
             <img class="show-view-image" src="data:image/<%= deal.image2.contentType%>;base64,
                                 <%= deal.image2.data.toString('base64')%>">
@@ -15,16 +17,19 @@
     </div>
 
     <div class="row">
+        <!-- Show proposal title and description -->
         <div class="col s6">
             <h3 class="teal-text"><%= deal.title %></h3>
             <p><%= deal.description %></p>
         </div>
+        <!-- Show bid title and description -->
         <div class="col s6">
             <h3 class="teal-text"><%= deal.title2 %></h3>
             <p><%= deal.description2 %></p>
         </div>
     </div>
 
+    <!-- Delete button -->
     <div class="row">
         <form class="top-buffer col s12 row" action="/deals/<%= deal._id %>?_method=DELETE" method="POST">
             <button class="btn teal clickable center fill-parent col s3" type="submit">
@@ -35,6 +40,7 @@
 
     <div class="divider"></div>
 
+    <!-- Show all of the comments, if any -->
     <div class="row">
         <% if (deal.comments.length > 0) { %> 
             <% deal.comments.forEach((comment, index) => { %>
@@ -48,6 +54,7 @@
             <p>There are no messages between <%= deal.ownerName %> and <%= deal.ownerName2 %> yet</p>
         <% } %>
 
+        <!-- Form to make comments -->
         <form action="/deals/<%= deal._id %>/comments" method="POST">
             <textarea name="content" cols="40" rows="4"></textarea>
             <button class="btn teal clickable" type="submit">Add Message</button>
